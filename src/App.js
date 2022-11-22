@@ -4,9 +4,12 @@ import { Link } from "react-router-dom";
 import { Button, Card, Layout, Row, Tooltip } from 'antd';
 import Navbar from "./components/Navbar";
 import Favorbtn from './components/Favorbtn';
+import { useDispatch, useSelector } from 'react-redux';
+import { addFavor } from './actions';
 
-const App = () => {
-
+const App = ({ id }) => {
+  const dispatch = useDispatch()
+  const favor = useSelector(state => state.favor);
   const [movies, setMovies] = useState([]);
 
   const fetchMovies = async () => {
@@ -55,7 +58,9 @@ const App = () => {
               </Link>
             </div>
             <div className="btn">
-              <Favorbtn />
+              <Favorbtn 
+                action={(e) => dispatch(addFavor(item.id, item))}
+              />
             </div>
           </div>
         </Card>

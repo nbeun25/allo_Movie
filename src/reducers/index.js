@@ -15,9 +15,9 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 movie: copyMovie.map(movie => {
                     if (movie.id === action.payload.id) {
-                        if (movie.movies.find(item => item.name == action.payload.item.name)) {
-                            let index = copyMovie.find(element => element.id == action.payload.id)
-                            let movie = index.movies.find(movie => movie.name == action.payload.movie.name)
+                        if (movie.movies.find(item => item.name === action.payload.item.name)) {
+                            let index = copyMovie.find(element => element.id === action.payload.id)
+                            let movie = index.movies.find(movie => movie.name === action.payload.movie.name)
                             movie.quantity += 1
                         } else {
                             return {
@@ -32,10 +32,10 @@ export default function rootReducer(state = initialState, action) {
 
         case DELETE_FAVOR:
 
-            movie = copyMovie.find(item => item.id == action.payload.id);
+            movie = copyMovie.find(item => item.id === action.payload.id);
 
 
-            movie = movie.movies.find(movie => movie.name == action.payload.movie.name)
+            movie = movie.movies.find(movie => movie.name === action.payload.movie.name)
 
             movie.movies = movie.movies.filter(movie => movie.name !== action.payload.movie.name)
 

@@ -4,11 +4,20 @@ import './index.css';
 import Root from './Root'
 import reportWebVitals from './reportWebVitals';
 import 'antd/dist/antd.css';
+import { legacy_createStore as createStore } from 'redux';
+import rootReducer from './reducers';
+import { Provider } from 'react-redux';
+
+const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__
+  && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <React.StrictMode>
-    <Root />
+    <Provider store={store}>
+      <Root />
+    </Provider>
   </React.StrictMode>
 );
 
