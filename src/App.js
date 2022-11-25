@@ -9,9 +9,9 @@ import { addFavor } from './actions';
 
 const App = ({ id }) => {
   const dispatch = useDispatch()
-  const favor = useSelector(state => state.favor);
+  const favors = useSelector(state => state.movie);
   const [movies, setMovies] = useState([]);
-
+  console.log(favors);
   const fetchMovies = async () => {
     const json = await fetch(`https://api.themoviedb.org/3/discover/movie/?api_key=0613232d07f331f1e2267033f881fd75`).then(res => res.json());
 

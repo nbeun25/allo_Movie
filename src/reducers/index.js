@@ -1,4 +1,3 @@
-import React from "react";
 import { ADD_FAVOR, DELETE_ADD, DELETE_FAVOR } from "../actions/types";
 
 const initialState = {
@@ -13,21 +12,7 @@ export default function rootReducer(state = initialState, action) {
         case ADD_FAVOR:
             return {
                 ...state,
-                movie: copyMovie.map(movie => {
-                    if (movie.id === action.payload.id) {
-                        if (movie.movies.find(item => item.name === action.payload.item.name)) {
-                            let index = copyMovie.find(element => element.id === action.payload.id)
-                            let movie = index.movies.find(movie => movie.name === action.payload.movie.name)
-                            movie.quantity += 1
-                        } else {
-                            return {
-                                ...movie,
-                                movies: [...movie.movies, action.payload.movie]
-                            }
-                        }
-                    }
-                    return movie
-                })
+                movie: [...state.movie, action.payload.movie]
             }
 
         case DELETE_FAVOR:

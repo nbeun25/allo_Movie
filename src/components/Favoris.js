@@ -4,8 +4,8 @@ import Navbar from "./Navbar";
 
 const Favoris = () => {
 
-    const favors = useSelector(state => state.favor);
-    const listFavoris = favors.map(movie => {
+    let movies = useSelector(state => state.movie)
+    const listFavoris = movies.map(movie => {
         return (
             <h3>{movie.title}</h3>
         )
@@ -15,7 +15,6 @@ const Favoris = () => {
         <div className="App-fav">
             <Navbar />
             <div className="card">
-                <p>All the movies you loved</p>
                 <div className="favorite">
                     {listFavoris}
                 </div>
