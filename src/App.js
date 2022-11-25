@@ -1,13 +1,26 @@
-import { ContainerOutlined } from '@ant-design/icons';
+import { ContainerOutlined, AudioOutlined } from '@ant-design/icons';
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Button, Card, Layout, Row, Tooltip } from 'antd';
+import { Button, Card, Layout, Row, Space, Tooltip, Input } from 'antd';
 import Navbar from "./components/Navbar";
 import Favorbtn from './components/Favorbtn';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFavor } from './actions';
 
 const App = ({ id }) => {
+
+  const { Search } = Input; 
+
+  const suffix = (
+    <AudioOutlined
+      style={{
+        fontSize: 16,
+        color: '#1890ff',
+      }}
+    />
+  );
+  const onSearch = (value) => console.log(value);
+
   const dispatch = useDispatch()
   const favors = useSelector(state => state.movie);
   const [movies, setMovies] = useState([]);
@@ -58,7 +71,7 @@ const App = ({ id }) => {
               </Link>
             </div>
             <div className="btn">
-              <Favorbtn 
+              <Favorbtn
                 action={(e) => dispatch(addFavor(item.id, item))}
               />
             </div>
@@ -73,6 +86,11 @@ const App = ({ id }) => {
       <div className="App">
         <Navbar />
         <div className="App-container">
+          <div className="search">
+            <Space direction="vertical">
+              <Search placeholder="Film recherché..." onSearch={onSearch} enterButton />
+            </Space>
+          </div>
           <Row>
             {discoverItems}
           </Row>
