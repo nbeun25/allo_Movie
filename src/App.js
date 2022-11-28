@@ -1,7 +1,7 @@
 import { ContainerOutlined, AudioOutlined } from '@ant-design/icons';
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Button, Card, Layout, Row, Space, Tooltip, Input } from 'antd';
+import { Button, Card, Layout, Row, Space, Tooltip, Input, Pagination } from 'antd';
 import Navbar from "./components/Navbar";
 import Favorbtn from './components/Favorbtn';
 import { useDispatch, useSelector } from 'react-redux';
@@ -26,7 +26,7 @@ const App = ({ id }) => {
   const [movies, setMovies] = useState([]);
   console.log(favors);
   const fetchMovies = async () => {
-    const json = await fetch(`https://api.themoviedb.org/3/discover/movie/?api_key=0613232d07f331f1e2267033f881fd75`).then(res => res.json());
+    const json = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=0613232d07f331f1e2267033f881fd75&language=fr-FR&page=1`).then(res => res.json());
 
     setMovies(json.results);
   };
@@ -93,6 +93,7 @@ const App = ({ id }) => {
           </div>
           <Row>
             {discoverItems}
+            <Pagination defaultCurrent={1} total={50}/>
           </Row>
         </div>
       </div>
