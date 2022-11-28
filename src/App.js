@@ -1,13 +1,13 @@
 import { ContainerOutlined, AudioOutlined } from '@ant-design/icons';
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Button, Card, Layout, Row, Space, Tooltip, Input, Pagination } from 'antd';
 import Navbar from "./components/Navbar";
 import Favorbtn from './components/Favorbtn';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFavor } from './actions';
 
-const App = ({ id }) => {
+const App = () => {
 
   const { Search } = Input; 
 

@@ -6,8 +6,9 @@ const initialState = {
 }
 
 export default function rootReducer(state = initialState, action) {
-    const copyMovie = [...state.movie]
-    let movie
+    const copyMovie = [...state.movie]; 
+    let index; 
+
     switch (action.type) {
         case ADD_FAVOR:
             return {
@@ -17,16 +18,14 @@ export default function rootReducer(state = initialState, action) {
 
         case DELETE_FAVOR:
 
-            movie = copyMovie.find(item => item.id === action.payload.id);
-
-
-            movie = movie.movies.find(movie => movie.name === action.payload.movie.name)
-
-            movie.movies = movie.movies.filter(movie => movie.name !== action.payload.movie.name)
+            index = copyMovie.findIndex(movie => {
+                return movie.id === action.payload;
+            });
+            copyMovie.splice(index, 1);
 
             return {
                 ...state,
-                movie: copyMovie
+                copyMovie
             }
 
         default:
